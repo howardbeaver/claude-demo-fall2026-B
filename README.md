@@ -4,6 +4,10 @@ A one-page video portfolio: a hero video player with a gallery of thumbnails
 below it. Clicking a thumbnail plays that video in the hero. Plain HTML, CSS
 and JavaScript, with no framework or build step.
 
+- Live: https://demo-fall2026-b.vercel.app
+- Hosted on Vercel as a static site (Framework Preset: Other, no build
+  command). Every push to `main` redeploys it.
+
 ## Run locally
 
 From this folder:
