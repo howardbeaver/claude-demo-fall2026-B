@@ -30,23 +30,37 @@
              controls autoplay muted loop playsinline preload="auto" aria-label="Video player"></video>
     </div>
 
-    <ul class="gallery" aria-label="Videos">
-      <li>
-        <button type="button" data-video="video/sue-vid1.mp4" data-poster="posters/sue-vid1-frame.jpg" aria-current="true">
-          <img src="posters/sue-vid1-thumb.png" alt="Video 1" width="143" height="105">
-        </button>
-      </li>
-      <li>
-        <button type="button" data-video="video/sue-vid2.mp4" data-poster="posters/sue-vid2-frame.jpg">
-          <img src="posters/sue-vid2-thumb.png" alt="Video 2" width="143" height="105">
-        </button>
-      </li>
-      <li>
-        <button type="button" data-video="video/sue-vid3.mp4" data-poster="posters/sue-vid3-frame.jpg">
-          <img src="posters/sue-vid3-thumb.png" alt="Video 3" width="143" height="105">
-        </button>
-      </li>
-    </ul>
+    <div class="gallery-strip">
+      <button class="gallery-arrow gallery-prev" type="button" aria-label="Previous videos" aria-controls="gallery">‹</button>
+      <ul class="gallery" id="gallery" aria-label="Videos">
+        <li>
+          <button type="button" data-video="video/sue-vid1.mp4" data-poster="posters/sue-vid1-frame.jpg" aria-current="true">
+            <img src="posters/sue-vid1-thumb.png" alt="Video 1" width="143" height="105">
+          </button>
+        </li>
+        <li>
+          <button type="button" data-video="video/sue-vid2.mp4" data-poster="posters/sue-vid2-frame.jpg">
+            <img src="posters/sue-vid2-thumb.png" alt="Video 2" width="143" height="105">
+          </button>
+        </li>
+        <li>
+          <button type="button" data-video="video/sue-vid3.mp4" data-poster="posters/sue-vid3-frame.jpg">
+            <img src="posters/sue-vid3-thumb.png" alt="Video 3" width="143" height="105">
+          </button>
+        </li>
+        <li>
+          <button type="button" data-video="video/sample-1.mp4" data-poster="posters/sample-1-frame.jpg">
+            <img src="posters/sample-1-thumb.png" alt="Video 4" width="143" height="105">
+          </button>
+        </li>
+        <li>
+          <button type="button" data-video="video/sample-2.mp4" data-poster="posters/sample-2-frame.jpg">
+            <img src="posters/sample-2-thumb.png" alt="Video 5" width="143" height="105">
+          </button>
+        </li>
+      </ul>
+      <button class="gallery-arrow gallery-next" type="button" aria-label="Next videos" aria-controls="gallery">›</button>
+    </div>
 
     <p id="now-playing" class="visually-hidden" aria-live="polite"></p>
   </main>

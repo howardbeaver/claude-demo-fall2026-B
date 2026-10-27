@@ -108,38 +108,59 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.45);
 }
 
+/* Videos with a different shape (e.g. 16:9) show whole, with black bars. */
 .hero video {
   width: 100%;
   aspect-ratio: 1472 / 1080;
+  background: #000;
 }
 
-.gallery {
+/* Gallery strip: one row of full-size thumbnails that scrolls sideways
+   (swipe, trackpad or the ‹ › arrows) and snaps to whole thumbnails.
+   4 fit at 656px, leaving a 21px edge at each end. */
+
+.gallery-strip {
+  position: relative;
   width: 656px;
   max-width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  margin: 21px 0 0;
-  padding: 8px 16px 6px;
-  list-style: none;
+  margin-top: 21px;
   background: var(--navy-strip);
 }
 
-/* Thumbnails are 143px wide but shrink together, keeping their aspect
-   ratio, when the row doesn't fit; the strip's height follows them. */
-.gallery li {
-  flex: 0 1 143px;
-  min-width: 0;
+.gallery {
+  display: flex;
+  gap: 14px;
+  margin: 0;
+  padding: 8px 21px 6px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 21px;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
 }
 
-.gallery img {
-  width: 100%;
-  height: auto;
+.gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery li {
+  flex: 0 0 143px;
+  scroll-snap-align: start;
+}
+
+/* When every thumbnail fits, these centre the row; once it overflows they
+   resolve to 0 and the row scrolls from its first thumbnail. */
+.gallery li:first-child {
+  margin-left: auto;
+}
+
+.gallery li:last-child {
+  margin-right: auto;
 }
 
 .gallery button {
   display: block;
-  width: 100%;
   padding: 0;
   border: 0;
   background: none;
@@ -149,6 +170,41 @@ main {
 
 .gallery button[aria-current="true"] {
   box-shadow: 0 0 10px 4px var(--glow);
+}
+
+/* The arrows sit over the strip's ends and hide (disabled) at either end
+   of the row, or when nothing overflows. */
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  width: 28px;
+  height: 60px;
+  padding: 0 0 4px;
+  border: 0;
+  background: color-mix(in srgb, var(--navy-strip) 85%, transparent);
+  color: #fff;
+  font: 32px/1 Helvetica, Arial, sans-serif;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.gallery-arrow:hover {
+  background: var(--navy-strip);
+}
+
+.gallery-arrow:disabled {
+  visibility: hidden;
+}
+
+.gallery-prev {
+  left: 0;
+  border-radius: 0 6px 6px 0;
+}
+
+.gallery-next {
+  right: 0;
+  border-radius: 6px 0 0 6px;
 }
 
 /* Footer */

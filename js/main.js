@@ -1,5 +1,5 @@
 // Gallery: clicking a thumbnail plays its video in the hero.
-// Below that, the phone menu.
+// Below that, the strip's scroll arrows and the phone menu.
 
 const hero = document.querySelector('#hero-video');
 const thumbs = [...document.querySelectorAll('.gallery button')];
@@ -38,6 +38,50 @@ window.addEventListener('load', () => {
     new Image().src = thumb.dataset.poster;
   }
 });
+
+// Strip arrows: each click scrolls one page of whole thumbnails (as many as
+// fit), and scroll snapping lines the next one up with the edge. An arrow
+// hides at its end of the row; both hide when everything fits.
+
+const gallery = document.querySelector('.gallery');
+const prevArrow = document.querySelector('.gallery-prev');
+const nextArrow = document.querySelector('.gallery-next');
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+function pageWidth() {
+  const items = gallery.children;
+  const style = getComputedStyle(gallery);
+  const visible = gallery.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+  if (items.length < 2) return visible;
+  const step = items[1].offsetLeft - items[0].offsetLeft; // thumbnail + gap
+  const gap = parseFloat(style.columnGap) || 0;
+  return Math.max(1, Math.floor((visible + gap) / step)) * step;
+}
+
+function scrollGallery(direction) {
+  gallery.scrollBy({
+    left: direction * pageWidth(),
+    behavior: reduceMotion.matches ? 'auto' : 'smooth',
+  });
+}
+
+function updateArrows() {
+  const atStart = gallery.scrollLeft <= 1;
+  const atEnd = gallery.scrollLeft >= gallery.scrollWidth - gallery.clientWidth - 1;
+
+  // A disabled button drops keyboard focus, so hand it to the other arrow.
+  if (atStart && !atEnd && document.activeElement === prevArrow) nextArrow.focus();
+  if (atEnd && !atStart && document.activeElement === nextArrow) prevArrow.focus();
+
+  prevArrow.disabled = atStart;
+  nextArrow.disabled = atEnd;
+}
+
+prevArrow.addEventListener('click', () => scrollGallery(-1));
+nextArrow.addEventListener('click', () => scrollGallery(1));
+gallery.addEventListener('scroll', updateArrows, { passive: true });
+window.addEventListener('resize', updateArrows);
+updateArrows();
 
 // Phone menu: the hamburger shows and hides the nav links (600px and below).
 
