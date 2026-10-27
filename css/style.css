@@ -159,13 +159,15 @@ main {
   align-items: center;
   justify-content: center;
   /* Sits the text slightly below centre, as in the mockup. */
-  padding-top: 10px;
+  padding: 10px 16px 0;
   background: var(--glass);
+  text-align: center;
   font-size: 14.5px;
 }
 
 .site-footer p {
   margin: 0;
+  text-wrap: balance;
 }
 
 /* Screen-reader-only text */
@@ -205,6 +207,7 @@ video:focus-visible {
 @media (max-width: 600px) {
   .site-header {
     position: relative;
+    gap: 8px;
     padding: 0 16px;
   }
 

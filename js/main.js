@@ -31,6 +31,14 @@ for (const thumb of thumbs) {
   thumb.addEventListener('click', () => playThumb(thumb));
 }
 
+// Once the page has loaded, fetch every poster frame so a switch shows the
+// new video's first frame straight away instead of a blank player.
+window.addEventListener('load', () => {
+  for (const thumb of thumbs) {
+    new Image().src = thumb.dataset.poster;
+  }
+});
+
 // Phone menu: the hamburger shows and hides the nav links (600px and below).
 
 const menuButton = document.querySelector('.menu-toggle');
