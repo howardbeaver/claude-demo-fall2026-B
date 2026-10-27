@@ -5,6 +5,7 @@
   --navy: #131b55;                    /* hero border */
   --navy-strip: #123054;              /* gallery strip */
   --ink: #141e3a;                     /* text */
+  --orange: #fa6400;                  /* playing thumbnail's glow, from the artwork */
   --glass: rgba(255, 255, 255, 0.6);  /* header and footer bars */
   --bar-height: 68px;
 }
@@ -129,6 +130,11 @@ main {
   border: 0;
   background: none;
   cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.gallery button[aria-current="true"] {
+  box-shadow: 0 0 6px 2px var(--orange);
 }
 
 /* Footer */
@@ -146,6 +152,20 @@ main {
 
 .site-footer p {
   margin: 0;
+}
+
+/* Screen-reader-only text */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Keyboard focus */
