@@ -29,8 +29,11 @@ server doesn't.
 ```
 index.html      the page
 css/style.css   styles
+js/main.js      thumbnail clicks, gallery arrows, phone menu
 dev-server.py   local development server (not deployed)
-images/         background.jpg
+images/         background.jpg, favicon.svg
 posters/        thumbnails (*-thumb.png) and poster frames (*-frame.jpg)
 video/          the videos
 ```
+
+See `CLAUDE.md` for the design details and how to add a video.
