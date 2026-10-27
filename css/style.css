@@ -5,7 +5,7 @@
   --navy: #131b55;                    /* hero border */
   --navy-strip: #123054;              /* gallery strip */
   --ink: #141e3a;                     /* text */
-  --orange: #fa6400;                  /* playing thumbnail's glow, from the artwork */
+  --glow: #ffeb00;                    /* playing thumbnail's glow, bright yellow */
   --glass: rgba(255, 255, 255, 0.6);  /* header and footer bars */
   --bar-height: 68px;
 }
@@ -134,7 +134,7 @@ main {
 }
 
 .gallery button[aria-current="true"] {
-  box-shadow: 0 0 6px 2px var(--orange);
+  box-shadow: 0 0 10px 4px var(--glow);
 }
 
 /* Footer */
