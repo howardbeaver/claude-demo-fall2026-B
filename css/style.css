@@ -112,7 +112,10 @@ main {
 }
 
 .gallery {
+  width: 656px;
+  max-width: 100%;
   display: flex;
+  justify-content: center;
   gap: 14px;
   margin: 21px 0 0;
   padding: 8px 16px 6px;
