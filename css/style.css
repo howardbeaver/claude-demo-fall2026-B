@@ -7,6 +7,7 @@
   --ink: #141e3a;                     /* text */
   --glow: #ffeb00;                    /* playing thumbnail's glow, bright yellow */
   --glass: rgba(255, 255, 255, 0.6);  /* header and footer bars */
+  --glass-menu: rgba(255, 255, 255, 0.92); /* phone menu dropdown, opaque enough to read over video */
   --bar-height: 68px;
 }
 
@@ -124,8 +125,21 @@ main {
   background: var(--navy-strip);
 }
 
+/* Thumbnails are 143px wide but shrink together, keeping their aspect
+   ratio, when the row doesn't fit; the strip's height follows them. */
+.gallery li {
+  flex: 0 1 143px;
+  min-width: 0;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+}
+
 .gallery button {
   display: block;
+  width: 100%;
   padding: 0;
   border: 0;
   background: none;
@@ -175,4 +189,84 @@ button:focus-visible,
 video:focus-visible {
   outline: 3px solid #fff;
   outline-offset: 2px;
+}
+
+/* White wouldn't show on the light header. */
+.site-header :focus-visible {
+  outline-color: var(--ink);
+}
+
+/* Phone menu: at 600px and below the nav collapses behind a hamburger. */
+
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .site-header {
+    position: relative;
+    padding: 0 16px;
+  }
+
+  .logo,
+  .site-nav {
+    position: static;
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0 9px;
+    border: 0;
+    background: none;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    height: 3px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  /* The three bars turn into an X while the menu is open. */
+  .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .site-nav ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0;
+    background: var(--glass-menu);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .site-nav ul.is-open {
+    display: flex;
+  }
+
+  .site-nav a {
+    display: block;
+    padding: 12px 16px;
+  }
 }
