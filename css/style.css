@@ -1,0 +1,17 @@
+/* MyVideoPlayer styles. The mockup layout is built in M2. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}

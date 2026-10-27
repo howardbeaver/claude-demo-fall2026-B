@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MyVideoPlayer</title>
+  <meta name="description" content="A portfolio of my video work.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="./">MyVideoPlayer</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <video id="hero-video" src="video/sue-vid1.mp4" poster="posters/sue-vid1-frame.jpg"
+             controls autoplay muted loop playsinline preload="auto"></video>
+    </div>
+
+    <ul class="gallery" aria-label="Videos">
+      <li>
+        <button type="button" data-video="video/sue-vid1.mp4" data-poster="posters/sue-vid1-frame.jpg" aria-current="true">
+          <img src="posters/sue-vid1-thumb.png" alt="Video 1" width="143" height="105">
+        </button>
+      </li>
+      <li>
+        <button type="button" data-video="video/sue-vid2.mp4" data-poster="posters/sue-vid2-frame.jpg">
+          <img src="posters/sue-vid2-thumb.png" alt="Video 2" width="143" height="105">
+        </button>
+      </li>
+      <li>
+        <button type="button" data-video="video/sue-vid3.mp4" data-poster="posters/sue-vid3-frame.jpg">
+          <img src="posters/sue-vid3-thumb.png" alt="Video 3" width="143" height="105">
+        </button>
+      </li>
+    </ul>
+  </main>
+
+  <footer class="site-footer">
+    <p>My Contact Information – My Social Media Links</p>
+  </footer>
+</body>
+</html>
